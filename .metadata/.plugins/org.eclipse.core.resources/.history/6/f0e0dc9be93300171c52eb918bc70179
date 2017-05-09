@@ -1,0 +1,35 @@
+$(document).ready(function(){
+		$("#submitbutton").click(function() {
+			var username = "<%=u.getUsername()%>"
+			var city = $("#city").val();
+			var toDate = $("#toDate").val();
+			var fromDate = $("#fromDate").val();
+			var purpose = $("#purpose").val();
+			if (city != "" && toDate != "" && fromDate != "" && purpose != "") {
+				$.ajax({
+					method: "POST",
+					url: "/FriendlyWeb/MainServlet",
+					data: { operation: "updateLocations", location: city, purp: purpose, tDate: toDate, fDate: fromDate, uname: username },
+					error: ajaxReturnError,
+					success: ajaxReturn_Success
+				})
+			} else {
+				$( "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Warning!</strong> Please fill in all the options.</div>" ).insertAfter( "#jumbo" );
+
+			}
+		});
+
+		function ajaxReturn_Success(result, status, xhr) {
+			var city = $("#city").val();
+			var toDate = $("#toDate").val().substring(0, 10);
+			var fromDate = $("#fromDate").val().substring(0, 10);
+			var purpose = $("#purpose").val();
+
+			$("#locations-table tr:last").after("<tr><td>"+city+"</td><td>"+fromDate+"</td><td>"+toDate+"</td><td>"+purpose+"</td></tr>");
+
+		}
+
+		function ajaxReturnError(result, status, xhr) {
+			$( "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Warning!</strong> Something went wrong and the location could not be added. Please try again.</div>" ).insertAfter( "#jumbo" );
+    }
+});

@@ -1,0 +1,220 @@
+<%@page import="friendly.ejb.FriendlyUser"%>
+<%@page import="friendly.ejb.Location"%>
+<%@page import="friendly.ejb.Purpose"%>
+<%@page import="friendly.ejb.FriendlyUserLocationPurpose"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+	<link rel="stylesheet" href="/FriendlyWeb/lib/bootstrap/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="/FriendlyWeb/css/style.css">
+  	<link rel="stylesheet" href="/FriendlyWeb/lib/bootstrap/css/bootstrap-datetimepicker.min.css">
+  	
+    <script src="/FriendlyWeb/lib/jquery/jquery-2.1.1.min.js"></script>
+  	<script src="/FriendlyWeb/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/FriendlyWeb/js/moment.js"></script>
+  	<script src="/FriendlyWeb/lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+  	
+	<title>Friendly - Locations</title>
+</head>
+
+<body>
+	<% FriendlyUser u = (FriendlyUser) session.getAttribute("user"); %>
+	<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
+	<% ArrayList<Location> cities = (ArrayList<Location>) session.getAttribute("cities"); %>
+	<% ArrayList<Purpose> purposes = (ArrayList<Purpose>) session.getAttribute("purposes"); %>
+	
+<%@ include file = "/html/SignedInNavbar.html" %>
+
+
+<div class="container">
+	<div class="row row-padding">	
+		<div class="col-md-6">
+			<div class="jumbotron" id="jumbo">
+				<form name="location-form" id="location-form">
+					<h2 id="test">New Location</h2>
+						<div class="row">
+							<div class="col-sm-12">
+								<h4>Select City</h4>
+								<div class="form-group">
+									<select name="city" id="city" class="form-control">
+										<option value="">City</option>
+										<% for (Location l : cities) { %>
+											<option value="<%=l.getCity() %>"><%=l.getCity() %></option>
+										<% } %>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<h4>Select Purpose</h4>
+								<div class="form-group">
+									<select name="purpose" id="purpose" class="form-control">
+										<option value="">Purpose</option>
+										<% for (Purpose p : purposes) { %>
+											<option value="<%=p.getPurposeType() %>"><%=p.getPurposeType() %></option>
+										<% } %>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-6">
+								<h4>Select Date</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<h5>From</h5>
+							</div>
+							<div class="col-sm-6">
+								<h5>To</h5>
+							</div>
+						</div>
+						<div class="row">
+			    			<div class='col-sm-6'>
+			        			<div class="form-group">
+			            			<div class='input-group date' id='datetimepicker1'>
+			                 			<input type='text' id="fromDate" name="fromDate" class="form-control" />
+				                 			<span class="input-group-addon">
+				                    			<span class="glyphicon glyphicon-calendar">
+				                    			</span>
+				                			</span>
+			            			</div>
+			        			</div>
+			    			</div>
+			    			<div class='col-sm-6'>
+			        			<div class="form-group">
+			            			<div class='input-group date' id='datetimepicker2'>
+			                 			<input type='text' id="toDate" name="toDate" class="form-control" />
+			                 				<span class="input-group-addon">
+			                    				<span class="glyphicon glyphicon-calendar"></span>
+			                				</span>
+			            			</div>
+			        			</div>
+			    			</div>
+						</div>
+						
+				       	<script type="text/javascript">
+				           $(function () {
+				               $('#datetimepicker1').datetimepicker();
+				               $('#datetimepicker2').datetimepicker({
+				            	   useCurrent: false
+				               });
+				               $("#datetimepicker1").on("dp.change", function (e) {
+				                   $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+				               });
+				               $("#datetimepicker2").on("dp.change", function (e) {
+				                   $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+				               });
+				           });
+			       		</script>
+			       		<div class="row">
+				       		<div class="form-group">
+								<div class="col-sm-6">
+								</div>
+							</div>
+						</div>
+			       	
+				</form>
+			<button class="btn btn-primary" id="submitbutton">Add Location</button>
+			
+<script type="text/javascript">	
+		$(document).ready(function(){
+			$("#submitbutton").click(function() {
+				var username = "<%=u.getUsername()%>"
+				var city = $("#city").val();
+				var toDate = $("#toDate").val();
+				var fromDate = $("#fromDate").val();
+				var purpose = $("#purpose").val();
+				if (city != "" && toDate != "" && fromDate != "" && purpose != "") {
+					$.ajax({
+						method: "POST",
+						url: "/FriendlyWeb/MainServlet",
+						data: { operation: "updateLocations", location: city, purp: purpose, tDate: toDate, fDate: fromDate, uname: username },
+						error: ajaxReturnError,
+						success: ajaxReturn_Success
+					})
+				} else {
+					$( "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Warning!</strong> Please fill in all the options.</div>" ).insertAfter( "#jumbo" );
+
+				}
+			});
+			
+			function ajaxReturn_Success(result, status, xhr) {
+				var city = $("#city").val();
+				var toDate = $("#toDate").val().substring(0, 10);
+				var fromDate = $("#fromDate").val().substring(0, 10);
+				var purpose = $("#purpose").val();
+				
+				$("#locations-table tr:last").after("<tr><td>"+city+"</td><td>"+fromDate+"</td><td>"+toDate+"</td><td>"+purpose+"</td></tr>");
+				
+			}
+			
+			function ajaxReturnError(result, status, xhr) {
+				$( "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>Warning!</strong> Something went wrong and the location could not be added. Please try again.</div>" ).insertAfter( "#jumbo" );
+							
+			}		
+		});
+</script>
+			</div>			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="jumbotron">
+					<h2>My Locations</h2>	          
+					<table class="table table-striped" id="locations-table">
+						<thead>
+					    	<tr>
+					       		<th>City</th>
+					       		<th>From</th>
+					       		<th>To</th>
+						 		<th>Purpose</th>
+					     	</tr>
+					   	</thead>
+					   	<tbody>
+					   		<% for (FriendlyUserLocationPurpose ulp : u.getUserLocationPurposes()) { %>
+					   			<tr>
+									<td><%=ulp.getLocation().getCity() %></td>
+						       		<td><%=df.format(ulp.getFromDate()) %></td>
+						       		<td><%=df.format(ulp.getToDate()) %></td>
+									<td><%=ulp.getPurpose().getPurposeType() %></td>
+								</tr>
+							<% } %>
+					   	</tbody>
+					</table>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%@ include file = "/html/footer.html" %>
+<script type="text/javascript">
+	var currurl = window.location.pathname;
+	var index = currurl.lastIndexOf("/") + 1;
+	var filename = currurl.substr(index);
+	$("#test").text(filename);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+<script src="/FriendlyWeb/lib/jquery-validator/validation.js"></script>
+
+
+</body>
+
+</html>

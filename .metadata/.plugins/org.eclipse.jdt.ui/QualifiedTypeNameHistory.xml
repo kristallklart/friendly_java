@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.ejb.EJB"/>
+<fullyQualifiedTypeName name="friendly.facade.FacadeLocal"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="friendly.ejb.FieldOfProfession"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.text.ParseException"/>
+<fullyQualifiedTypeName name="friendly.ejb.FriendlyUserLocationPurpose"/>
+<fullyQualifiedTypeName name="friendly.ejb.FriendlyUser"/>
+<fullyQualifiedTypeName name="friendly.ejb.Location"/>
+<fullyQualifiedTypeName name="friendly.ejb.Purpose"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="friendly.ejb.FriendlyUserLocationPurposeKey"/>
+<fullyQualifiedTypeName name="javax.persistence.Column"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.sql.SQLSyntaxErrorException"/>
+</qualifiedTypeNameHistroy>

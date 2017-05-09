@@ -1,0 +1,88 @@
+package friendly.ejb;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(FriendlyUserLocationPurposeKey.class)
+@NamedQuery(name = "FriendlyUserLocationPurpose.getAllUserLocationPurposes", query = "SELECT ulp from FriendlyUserLocationPurpose ulp")
+@Table(name = "User_Location_Purpose")
+public class FriendlyUserLocationPurpose implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private Purpose purpose;
+	private Location location;
+	private FriendlyUser friendlyUser;
+	private Date fromDate;
+	private Date toDate;
+	
+	@Id
+	@Column(name = "PurposeType")
+	private String purposeType;
+	
+	@Id
+	@Column(name = "City")
+	private String city;
+	
+	@Id
+	@Column(name = "City")
+	private String username;
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "Purposetype", referencedColumnName = "Purposetype")
+	public Purpose getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(Purpose purpose) {
+		this.purpose = purpose;
+	}
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "City", referencedColumnName = "City")
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "Username", referencedColumnName = "Username")
+	public FriendlyUser getFriendlyUser() {
+		return friendlyUser;
+	}
+	public void setFriendlyUser(FriendlyUser friendlyUser) {
+		this.friendlyUser = friendlyUser;
+	}
+	
+	@Id
+	@Column(name = "FromDate")
+	public Date getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+	
+	@Id
+	@Column(name = "ToDate")
+	public Date getToDate() {
+		return toDate;
+	}
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+}

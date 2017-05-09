@@ -1,0 +1,104 @@
+package friendly.ejb;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class FriendlyUserLocationPurposeKey implements Serializable {
+
+	private static final long serialVersionUID = 5787290685974371234L;
+	private String purpose;
+	private String location;
+	private String friendlyUser;
+	private Date fromDate;
+	private Date toDate;
+
+	public FriendlyUserLocationPurposeKey() {}
+	
+	public FriendlyUserLocationPurposeKey(String purpose, String location, String friendlyUser, Date fromDate, Date toDate) {
+		this.purpose = purpose;
+		this.location = location;
+		this.friendlyUser = friendlyUser;
+		this.fromDate = fromDate;
+		this.toDate = fromDate;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purposeType) {
+		this.purpose = purposeType;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getFriendlyUser() {
+		return friendlyUser;
+	}
+
+	public void setFriendlyUser(String username) {
+		this.friendlyUser = username;
+	}
+
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Date getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+
+		if (this == other) {
+			return true;
+		}
+
+		if (other == null) {
+			return false;
+		}
+
+		if (!(other instanceof FriendlyUserLocationPurposeKey)) {
+			return false;
+		}
+
+		FriendlyUserLocationPurposeKey castOther = (FriendlyUserLocationPurposeKey) other;
+
+		return (this.friendlyUser == castOther.friendlyUser)
+				|| (this.friendlyUser != null && castOther.friendlyUser != null
+						&& this.friendlyUser.equals(castOther.friendlyUser))
+						&& (this.location == castOther.location)
+				|| (this.location != null && castOther.location != null
+						&& this.location.equals(castOther.location))
+						&& (this.purpose == castOther.purpose)
+				|| (this.purpose != null && castOther.purpose != null
+						&& this.purpose.equals(castOther.purpose))
+						&& (this.fromDate == castOther.fromDate)
+				|| (this.fromDate != null && castOther.fromDate != null
+						&& this.fromDate.toString().equals(castOther.fromDate.toString()))
+						&& (this.toDate == castOther.toDate)
+				|| (this.toDate != null && castOther.toDate != null
+						&& this.toDate.toString().equals(castOther.toDate.toString()));
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+}

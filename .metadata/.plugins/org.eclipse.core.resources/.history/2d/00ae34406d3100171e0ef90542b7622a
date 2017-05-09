@@ -1,0 +1,6 @@
+ <!-- nav-footer -->
+ <nav class="navbar navbar-default navbar-fixed-bottom">
+   <div class="container">
+     <p class= "navbar-text navbar-right">© Friendly Inc. All rights reserved</p>
+   </div>
+</nav> <!-- /nav-footer-->

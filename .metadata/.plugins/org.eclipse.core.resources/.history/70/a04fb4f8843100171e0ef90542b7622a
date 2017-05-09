@@ -1,0 +1,113 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="friendly.ejb.FriendlyUser"%>
+<%@page import="java.awt.image.BufferedImage"%>
+<%@page import="javax.imageio.ImageIO" %>
+<%@page import="java.io.ByteArrayInputStream" %>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	<link rel="stylesheet" href="/FriendlyWeb/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/FriendlyWeb/css/style.css">
+</head>
+
+<body>
+	<% FriendlyUser u = (FriendlyUser) session.getAttribute("user"); %>
+	<% DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); %>
+	<% session = request.getSession(); 
+// 	  session.setAttribute("user", u);
+	 %>
+	<!-- Navbar header-->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				  aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+				<a class="navbar-brand" href="/FriendlyWeb/Index.jsp"><img class="img-responsive img-rounded" src="/FriendlyWeb/assets/img/logo3.png"></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="/FriendlyWeb/Index.jsp">Home</a></li>
+					<li class="active"><a href="#">Profile <span class="sr-only">(current)</span></a></li>
+					<li><a href="/FriendlyWeb/Locations.jsp">Locations</a></li>
+					<li><a href="/FriendlyWeb/Test.jsp">Tests</a></li>
+					<li><a href="/FriendlyWeb/About.jsp">About</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+			<div class="row">
+
+			</div>
+		</div>
+		<!-- /.container -->
+	</nav>
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-sm-3">
+				<div class="profile-info"> <img class="img-responsive img-rounded" src="/FriendlyWeb/assets/img/anna3.jpg" alt="profilepic"></div>
+			</div>
+
+			<div class="col-sm-9">
+				<div class="jumbotron" style="padding-top: 5px; padding-bottom: 45px">
+					<div class="row">
+						<% String name = u.getFirstname() + " " + u.getLastname(); %>
+						<h2 style="padding-left: 13px; padding-bottom: 10px"><%=name %></h2>
+					</div>
+					<div class="row">
+						<div class="col-sm-1"> <p class="lead"><span class="glyphicon glyphicon-briefcase" style="vertical-align: middle" aria-hidden="true"></span></p> </div>
+						<div class="col-sm-11"><p style="padding-top: 3px"> <%=u.getProfession() %></p> </div>
+					</div>
+					<div class="row">
+						<div class="col-sm-1"> <p class="lead"><span class="glyphicon glyphicon-equalizer" style="vertical-align: middle" aria-hidden="true"></span></p> </div>
+						<div class="col-sm-11"><p style="padding-top: 3px"> <%=u.getIndustry().getIndustry() %></p> </div>
+					</div>
+					<div class="row">
+						<div class="col-sm-1"> <p class="lead"><span class="glyphicon glyphicon-gift" style="vertical-align: middle" aria-hidden="true"></span></p> </div>
+						<div class="col-sm-11"><p style="padding-top: 3px"> <%=df.format(u.getBirthdate()) %></p> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row default-top-padding">
+			<div class="col-sm-12">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title">About</h3>
+					</div>
+					<div class="panel-body">
+						<p><%=u.getAbout() %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%@ include file = "/html/footer.html" %>
+			
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/FriendlyWeb/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+  <script src="/FriendlyWeb/lib/jquery-validator/validation.js"></script>
+  
+</body>
+</html>

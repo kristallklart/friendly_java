@@ -1,0 +1,136 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="/FriendlyWeb/lib/bootstrap/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="/FriendlyWeb/css/style.css">
+
+</head>
+
+<body>
+	<!-- Navbar header-->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				 aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+				<a class="navbar-brand" href="#">Friendly</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="/FriendlyWeb/Index.jsp">Home</a></li>
+					<li class="active"><a href="#">Sign Up<span class="sr-only">(current)</span></a></li>
+					<li><a href="/FriendlyWeb/About.jsp">About</a></li>
+
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="container">
+				<form class="form-horizontal" name="register-form" id="register-form">
+					<div class="col-xs-7">
+						<div class="form-group">
+							<label for="username" class="col-sm-2 control-label">Username</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="username" id="username" placeholder="Username">
+							</div>
+							<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-2 control-label">Password</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+							</div>
+							<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+						</div>
+						<div class="form-group">
+							<label for="firstName" class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name">
+							</div>
+							<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+						</div>
+						<div class="form-group">
+							<label for="lastName" class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name">
+							</div>
+							<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+						</div>
+						<div class="form-group form-inline">
+							<label for="month" class="col-sm-2 control-label">Birthdate</label>
+							<div class="col-sm-8">
+								<select name="month" id="month" class="form-control" onChange="changeDate(this.options[selectedIndex].value);">
+									<option value="">Month</option>
+									<option value="1">January</option>
+									<option value="2">February</option>
+									<option value="3">March</option>
+									<option value="4">April</option>
+									<option value="5">May</option>
+									<option value="6">June</option>
+									<option value="7">July</option>
+									<option value="8">August</option>
+									<option value="9">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select>
+								<select name="day" id="day" class="form-control">
+									<option value="">Day</option>
+								</select>
+								<select name="year" id="year" class="form-control">
+									<option value="">Year</option>
+								</select>
+								<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								<label id="respons"></label>
+							</div>
+						</div>
+		
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8">
+								<button type="submit" class="btn btn-primary">Create Account</input>
+							</div>
+						</div>
+					</div>
+					<input name="operation" value="index" type="hidden">
+				</form>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<p class="navbar-text navbar-right">© Friendly Inc. All rights reserved</p>
+		</div>
+	</nav>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/FriendlyWeb/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+	<script src="/FriendlyWeb/lib/jquery-validator/validation.js"></script>
+	<script src="/FriendlyWeb/js/datepicker.js"></script>
+	
+
+</body>
+
+
+</html>

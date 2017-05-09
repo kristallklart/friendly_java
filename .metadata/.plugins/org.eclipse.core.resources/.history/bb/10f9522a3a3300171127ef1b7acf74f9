@@ -1,0 +1,129 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Friendly - Home</title>
+
+  <link rel="stylesheet" href="/FriendlyWeb/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/FriendlyWeb/css/style.css">
+
+</head>
+
+<body>
+  <!-- navbar header -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+			<a class="navbar-brand" href="/FriendlyWeb/Index.jsp"><img class="img-responsive img-rounded" src="/FriendlyWeb/assets/img/logo3.png"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="">Home<span class="sr-only">(current)</span></a></li>
+          <li><a href="/FriendlyWeb/SignUp.jsp">Sign Up</a></li>
+          <li><a href="/FriendlyWeb/Test.jsp">Tests</a></li>
+          <li><a href="/FriendlyWeb/About.jsp">About</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav> <!-- /navbar header-->
+
+  <!-- container -->
+  <div class=container>
+
+    <!--jumbotron -->
+    <div class="jumbotron">
+      <div class="container">
+
+        <div class="row text-center default-bottom-margin default-top-margin">
+          <div class="col-sm-8 col-sm-offset-2">
+            <h1>Welcome to Friendly</h1>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row text-center default-bottom-margin default-top-margin">
+          <div class="col-sm-8 col-sm-offset-2">
+            <p class="lead hidden-xs">Something something about Friendly, catchy slogan..</p>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row col-sm-offset-2">
+          <form action="/FriendlyWeb/MainServlet" method="post" class="form-inline" name="sign-in" id="sign-in">
+            <div class="form-group col-sm-4 col-xs-12 text-center default-bottom-margin">
+              <label class="sr-only" for="username">Username</label>
+              <input type="text" class="form-control input-lg" id="username" name="username" placeholder="Username">
+            </div>
+            <div class="form-group col-sm-4 col-xs-12 text-center default-bottom-margin">
+              <label class="sr-only" for="password">Password</label>
+              <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group col-sm-2 col-xs-12 text-center default-bottom-margin">
+            	<button type="submit" name="submit" class="btn btn-primary btn-lg">Sign in</button>
+            	<input name="operation" value="profile" type="hidden">
+			</div>          
+          </form>    
+        </div>
+        
+        <form class="form-horizontal">
+		  <div class="form-group">
+		    <div class="col-xs-4 col-xs-offset-4">
+		      <input type="email" class="form-control input-lg" id="username" name="username" placeholder="Username">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-xs-4 col-xs-offset-4">
+		      <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
+		    </div>
+		  </div>
+		  <div class="row">
+			  <div class="form-group">
+			    <div class="col-xs-offset-4 col-xs-2">
+			      <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+			    </div>
+			    <div class="form-group">
+			   		<a class="btn btn-success btn-lg default-top-margin default-bottom-margin" href="/FriendlyWeb/SignUp.jsp" role="button">Not a member yet? Register here!</a>
+			    </div>
+			  </div>
+		</div>
+		</form>
+        
+
+        <div class="row col-xs-6 col-xs-offset-4">
+            <a class="btn btn-success btn-lg default-top-margin default-bottom-margin" href="/FriendlyWeb/SignUp.jsp" role="button">Not a member yet? Register here!</a>
+        </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+      </div> <!-- /jumbotron -->
+
+    </div> <!-- /container -->
+  
+	<%@ include file = "/html/footer.html" %>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/FriendlyWeb/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+  <script src="/FriendlyWeb/lib/jquery-validator/validation.js"></script>
+
+</body>
+
+</html>

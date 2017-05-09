@@ -1,0 +1,119 @@
+$(function() {
+
+	$.validator.setDefaults({
+		highlight: function(element) {
+			$(element)
+				.closest(".form-group")
+				.addClass("has-error");
+		},
+		unhighlight: function(element) {
+			$(element)
+				.closest(".form-group")
+				.removeClass("has-error");
+		},
+		errorPlacement: function(error, element) {
+			element.attr("placeholder", error.text());
+		},
+		success: "valid"
+	});
+
+	$("#sign-in").validate({
+		rules: {
+			username: {
+				required: true
+			},
+			password: {
+				required: true
+			}
+		},
+		messages: {
+			username: {
+				required: "Please enter a username"
+			},
+			password: {
+				required: "Please enter a password"
+			}
+		}
+	});
+	
+	$("#register-form").validate({
+		rules: {
+			username: {
+				required: true
+			},
+			password: {
+				required: true
+			},
+			firstName: {
+				required: true
+			},
+			lastName: {
+				required: true
+			},
+			day: {
+				required: true
+			},
+			month: {
+				required: true
+			},
+			year: {
+				required: true
+			}
+		},
+		messages: {
+			username: {
+				required: "Please enter a username"
+			},
+			password: {
+				required: "Please enter a password"
+			},
+			firstName: {
+				required: "Please enter your First Name"
+			},
+			lastName: {
+				required: "Please enter your Last Name"
+			},
+			day: {
+				required: "Choose"
+			},
+			month: {
+				required: "Choose"
+			},
+			year: {
+				required: "Choose"
+			}
+		}
+	});
+	
+	$("#location-form").validate({
+		rules: {
+			city: {
+				required: true
+			},
+			purpose: {
+				required: true
+			},
+			toDate: {
+				required: true
+			},
+			fromDate: {
+				required: true
+			}
+		},
+		messages: {
+			city: {
+				required: "Please enter a location"
+			},
+			purpose: {
+				required: "Please enter a purpose"
+			},
+			toDate: {
+				required: "Please enter a date"
+			},
+			fromDate: {
+				required: "Please enter a date"
+			}
+		}
+	});
+
+});

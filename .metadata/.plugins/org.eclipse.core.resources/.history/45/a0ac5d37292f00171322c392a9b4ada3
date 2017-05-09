@@ -1,0 +1,58 @@
+body {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+.default-top-padding {
+	padding-top: 20px;
+}
+
+.default-bottom-padding {
+	padding-bottom: 20px;
+}
+
+.default-top-margin {
+	margin-top: 20px;
+}
+
+.default-bottom-margin {
+	margin-bottom: 20px;
+}
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+}
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+}
+.icon-padding {
+  padding: 3px;
+}
+
+.btn {
+    white-space: normal;
+}
+<<<<<<< HEAD
+.drop-colour {
+    color: white;
+    background-color: green;
+  }
+  .row-padding{
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+=======
+
+.image-formatting{
+	height: 50%;
+}
+>>>>>>> ac5d8b4c7d8d1e1240bf56f49bb0113fb9ccdc61
